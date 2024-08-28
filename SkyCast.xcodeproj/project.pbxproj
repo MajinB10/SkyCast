@@ -15,6 +15,8 @@
 		760067172C7EC5880053144B /* SkyCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067162C7EC5880053144B /* SkyCastUITests.swift */; };
 		760067192C7EC5880053144B /* SkyCastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067182C7EC5880053144B /* SkyCastUITestsLaunchTests.swift */; };
 		760067272C7EC7560053144B /* Location Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067262C7EC7560053144B /* Location Manager.swift */; };
+		7600672A2C7ED4310053144B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067292C7ED4310053144B /* WelcomeView.swift */; };
+		7600672C2C7EEFCA0053144B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600672B2C7EEFCA0053144B /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		760067162C7EC5880053144B /* SkyCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCastUITests.swift; sourceTree = "<group>"; };
 		760067182C7EC5880053144B /* SkyCastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCastUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		760067262C7EC7560053144B /* Location Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location Manager.swift"; sourceTree = "<group>"; };
+		760067292C7ED4310053144B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		7600672B2C7EEFCA0053144B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +100,9 @@
 		760066FA2C7EC5860053144B /* SkyCast */ = {
 			isa = PBXGroup;
 			children = (
+				760067282C7ED3920053144B /* Views */,
 				760067252C7EC7120053144B /* Managers */,
 				760066FB2C7EC5860053144B /* SkyCastApp.swift */,
-				760066FD2C7EC5860053144B /* ContentView.swift */,
 				760066FF2C7EC5880053144B /* Assets.xcassets */,
 				760067012C7EC5880053144B /* Preview Content */,
 			);
@@ -136,6 +140,16 @@
 				760067262C7EC7560053144B /* Location Manager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		760067282C7ED3920053144B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				760066FD2C7EC5860053144B /* ContentView.swift */,
+				760067292C7ED4310053144B /* WelcomeView.swift */,
+				7600672B2C7EEFCA0053144B /* LoadingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +285,8 @@
 				760066FE2C7EC5860053144B /* ContentView.swift in Sources */,
 				760067272C7EC7560053144B /* Location Manager.swift in Sources */,
 				760066FC2C7EC5860053144B /* SkyCastApp.swift in Sources */,
+				7600672C2C7EEFCA0053144B /* LoadingView.swift in Sources */,
+				7600672A2C7ED4310053144B /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +450,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyCast/Preview Content\"";
+				DEVELOPMENT_TEAM = 2BYHW87G5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -462,6 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SkyCast/Preview Content\"";
+				DEVELOPMENT_TEAM = 2BYHW87G5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
