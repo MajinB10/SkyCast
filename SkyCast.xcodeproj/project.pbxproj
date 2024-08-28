@@ -17,6 +17,7 @@
 		760067272C7EC7560053144B /* Location Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067262C7EC7560053144B /* Location Manager.swift */; };
 		7600672A2C7ED4310053144B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067292C7ED4310053144B /* WelcomeView.swift */; };
 		7600672C2C7EEFCA0053144B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600672B2C7EEFCA0053144B /* LoadingView.swift */; };
+		7600672E2C7EFDA60053144B /* Weather Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600672D2C7EFDA60053144B /* Weather Manager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		760067262C7EC7560053144B /* Location Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location Manager.swift"; sourceTree = "<group>"; };
 		760067292C7ED4310053144B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7600672B2C7EEFCA0053144B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		7600672D2C7EFDA60053144B /* Weather Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weather Manager.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				760067262C7EC7560053144B /* Location Manager.swift */,
+				7600672D2C7EFDA60053144B /* Weather Manager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				760066FE2C7EC5860053144B /* ContentView.swift in Sources */,
+				7600672E2C7EFDA60053144B /* Weather Manager.swift in Sources */,
 				760067272C7EC7560053144B /* Location Manager.swift in Sources */,
 				760066FC2C7EC5860053144B /* SkyCastApp.swift in Sources */,
 				7600672C2C7EEFCA0053144B /* LoadingView.swift in Sources */,
