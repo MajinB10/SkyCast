@@ -14,6 +14,7 @@
 		7600670D2C7EC5880053144B /* SkyCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600670C2C7EC5880053144B /* SkyCastTests.swift */; };
 		760067172C7EC5880053144B /* SkyCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067162C7EC5880053144B /* SkyCastUITests.swift */; };
 		760067192C7EC5880053144B /* SkyCastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067182C7EC5880053144B /* SkyCastUITestsLaunchTests.swift */; };
+		760067272C7EC7560053144B /* Location Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067262C7EC7560053144B /* Location Manager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		760067122C7EC5880053144B /* SkyCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		760067162C7EC5880053144B /* SkyCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCastUITests.swift; sourceTree = "<group>"; };
 		760067182C7EC5880053144B /* SkyCastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCastUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		760067262C7EC7560053144B /* Location Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location Manager.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		760066FA2C7EC5860053144B /* SkyCast */ = {
 			isa = PBXGroup;
 			children = (
+				760067252C7EC7120053144B /* Managers */,
 				760066FB2C7EC5860053144B /* SkyCastApp.swift */,
 				760066FD2C7EC5860053144B /* ContentView.swift */,
 				760066FF2C7EC5880053144B /* Assets.xcassets */,
@@ -125,6 +128,14 @@
 				760067182C7EC5880053144B /* SkyCastUITestsLaunchTests.swift */,
 			);
 			path = SkyCastUITests;
+			sourceTree = "<group>";
+		};
+		760067252C7EC7120053144B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				760067262C7EC7560053144B /* Location Manager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				760066FE2C7EC5860053144B /* ContentView.swift in Sources */,
+				760067272C7EC7560053144B /* Location Manager.swift in Sources */,
 				760066FC2C7EC5860053144B /* SkyCastApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
