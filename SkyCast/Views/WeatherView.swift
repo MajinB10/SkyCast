@@ -33,18 +33,20 @@ struct WeatherView: View {
                         }
                         .frame(maxWidth: 150, alignment: .leading)
                         
+                        
                         Spacer()
                         Text(weather.main.feelsLike.roundDouble() + "°")
-                            .font(.system(size: 100))
+                            .font(.system(size: 90))
                             .fontWeight(.bold)
                             .padding()
                     }
                     Spacer()
-                        .frame(height: 80)
+                        .frame(height: 0)
                     AsyncImage(url: URL(string: "https://wallpapersmug.com/download/1024x768/7a22c5/forest_mountains_sunset_cool_weather_minimalism.jpg")) {image in image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 350)
+                        .cornerRadius(20, corners: .allCorners)
                     } placeholder: {
                         ProgressView()
                     }
@@ -78,13 +80,13 @@ struct WeatherView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 .padding(.bottom, 20)
-                .foregroundColor(Color(hue: 0.656, saturation: 0.787, brightness: 0.354))
+                .foregroundColor(.black)
                 .background(.white)
                 .cornerRadius(20, corners: [.topLeft, .topRight])
             }
         }
         .edgesIgnoringSafeArea(.bottom)
-        .background(Color(hue: 0.656, saturation: 0.787, brightness: 0.354))
+        .background(.black)
         .preferredColorScheme(.dark)
     }
 }
