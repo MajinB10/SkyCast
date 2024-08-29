@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  SkyCast
-//
-//  Created by Bhavesh Anand on 28/8/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -19,15 +12,14 @@ struct ContentView: View {
                     Label("Home", systemImage: "house")
                 }
             
-            ShareLocationView(locationmanager: locationmanager)
+            SearchLocationView(locationManager: locationmanager)
                 .tabItem {
-                    Label("Share Location", systemImage: "location.circle")
+                    Label("Search Location", systemImage: "location.circle")
                 }
-                
         }
-        .background(.black)
+        .background(Color.black) // Ensure the background color is applied
         .preferredColorScheme(.dark)
-        .tabViewStyle(.page)
+        .tabViewStyle(.page) // Ensures page view style
     }
 }
 

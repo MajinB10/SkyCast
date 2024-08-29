@@ -24,6 +24,31 @@ class WeatherManager {
     }
 }
 
+func getCoordinates(for country: String, completion: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
+    let geocoder = CLGeocoder()
+    
+    geocoder.geocodeAddressString(country) { (placemarks, error) in
+        if let error = error {
+            // Handle error (e.g., country not found, network issue)
+            print("Error occurred while geocoding: \(error.localizedDescription)")
+            completion(nil, error)
+            return
+        }
+        
+        guard let placemark = placemarks?.first,
+              let location = placemark.location else {
+            // Handle case where no placemark is found
+            print("No location found for the given country.")
+            completion(nil, nil)
+            return
+        }
+        
+        // Extract the coordinates from the location
+        let coordinates = location.coordinate
+        completion(coordinates, nil)
+    }
+}
+
 
 // Model of the response body we get from calling the OpenWeather API
 struct ResponseBody: Decodable {
