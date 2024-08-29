@@ -15,6 +15,19 @@ struct WelcomeView: View {
     var body: some View {
         VStack{
             VStack (spacing: 20){
+                Spacer()
+                    .frame(height: 0)
+                AsyncImage(url: URL(string: "https://i.pinimg.com/550x/91/92/88/919288e85eb8442e0b4e7e9bb774e803.jpg")) {image in image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250)
+                    .cornerRadius(30, corners: .allCorners)
+                } placeholder: {
+                    ProgressView()
+                }
+                
+                
+                
                 Text("Welcome to the Weather App")
                     .bold().font(.title)
                 

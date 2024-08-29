@@ -23,6 +23,7 @@ struct WeatherView: View {
                     
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top)
                 
                 Spacer()
                 

@@ -67,6 +67,13 @@ struct SearchLocationView: View {
                 
             case .weather:
                 WeatherView(weather: weather ?? previewWeather)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("  < Back") {
+                                navigationState = .search
+                            }
+                        }
+                    }
             }
         }
     }
