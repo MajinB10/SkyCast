@@ -13,7 +13,7 @@ struct ShareLocationView: View {
     
     var body: some View {
         VStack {
-            Text("Current Location Weather")
+            Text("Search Location's Weather")
                 .bold().font(.title)
                 .padding()
             
