@@ -13,33 +13,21 @@ struct ContentView: View {
     @State var weather: ResponseBody?
     
     var body: some View {
-        VStack {
-            
-            if let location = locationmanager.location {
-                if let weather = weather {
-                    WeatherView(weather: weather)
-                } else {
-                    LoadingView()
-                        .task {
-                            do {
-                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                            } catch {
-                                print("Error getting weather: \(error)")
-                            }
-                        }
+        TabView {
+            HomeView(locationmanager: locationmanager, weatherManager: weatherManager, weather: $weather)
+                .tabItem {
+                    Label("Home", systemImage: "house")
                 }
-            } else {
-                if locationmanager.isLoading {
-                    LoadingView()
-                } else {
-                    WelcomeView()
-                        .environmentObject(locationmanager)
-                }
-            }
             
+            ShareLocationView(locationmanager: locationmanager)
+                .tabItem {
+                    Label("Share Location", systemImage: "location.circle")
+                }
+                
         }
         .background(.black)
         .preferredColorScheme(.dark)
+        .tabViewStyle(.page)
     }
 }
 

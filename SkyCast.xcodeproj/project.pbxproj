@@ -23,6 +23,8 @@
 		760067342C7F128D0053144B /* weatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = 760067332C7F128D0053144B /* weatherData.json */; };
 		760067362C7F13D50053144B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067352C7F13D50053144B /* Extensions.swift */; };
 		760067392C7F21E30053144B /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067382C7F21E30053144B /* WeatherRow.swift */; };
+		7600673B2C8021BC0053144B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600673A2C8021BC0053144B /* HomeView.swift */; };
+		7600673F2C8022390053144B /* ShareLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600673E2C8022390053144B /* ShareLocationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		760067332C7F128D0053144B /* weatherData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = weatherData.json; sourceTree = "<group>"; };
 		760067352C7F13D50053144B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		760067382C7F21E30053144B /* WeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
+		7600673A2C8021BC0053144B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7600673E2C8022390053144B /* ShareLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLocationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 				760067292C7ED4310053144B /* WelcomeView.swift */,
 				7600672B2C7EEFCA0053144B /* LoadingView.swift */,
 				7600672F2C7F114D0053144B /* WeatherView.swift */,
+				7600673A2C8021BC0053144B /* HomeView.swift */,
+				7600673E2C8022390053144B /* ShareLocationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -314,9 +320,11 @@
 				7600672E2C7EFDA60053144B /* Weather Manager.swift in Sources */,
 				760067272C7EC7560053144B /* Location Manager.swift in Sources */,
 				760066FC2C7EC5860053144B /* SkyCastApp.swift in Sources */,
+				7600673B2C8021BC0053144B /* HomeView.swift in Sources */,
 				760067392C7F21E30053144B /* WeatherRow.swift in Sources */,
 				7600672C2C7EEFCA0053144B /* LoadingView.swift in Sources */,
 				760067322C7F12480053144B /* ModelData.swift in Sources */,
+				7600673F2C8022390053144B /* ShareLocationView.swift in Sources */,
 				760067302C7F114D0053144B /* WeatherView.swift in Sources */,
 				7600672A2C7ED4310053144B /* WelcomeView.swift in Sources */,
 			);
