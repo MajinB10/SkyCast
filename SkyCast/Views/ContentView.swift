@@ -17,9 +17,9 @@ struct ContentView: View {
                     Label("Search Location", systemImage: "location.circle")
                 }
         }
-        .background(Color.black) // Ensure the background color is applied
+        .background(Color.black)
         .preferredColorScheme(.dark)
-        .tabViewStyle(.page) // Ensures page view style
+        .tabViewStyle(.page)
     }
 }
 
