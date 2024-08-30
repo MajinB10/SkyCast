@@ -19,6 +19,7 @@ struct ContentView: View {
                 Label("Home", systemImage: "house")
             }
             
+            
             SearchLocationView(locationManager: locationManager)
                 .tabItem {
                     Label("Search Location", systemImage: "location.circle")

@@ -14,7 +14,10 @@ struct SearchLocationView: View {
     @State private var errorMessage: String?
     @State private var weather: ResponseBody?
     @State private var navigationState: NavigationState = .search
-    
+    @State private var isImageVisible = false
+    @State private var isTextVisible = false
+    @State private var isImageLoaded = false
+
     let countries = [
         "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia",
         "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin",
@@ -50,35 +53,47 @@ struct SearchLocationView: View {
                 VStack {
                     Spacer()
                         .frame(height: 0)
-                    AsyncImage(url: URL(string: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3NtYWxsZGVzaWduY29tcGFueTAxX21pbmltYWxfd2FsbHBhcGVyX2xhbmRzY2FwZV9kdXJpbmdfc3Vuc2V0X2YzNTlhNTQ4LTBiZDItNDJmNi1hZWE1LWEyYmJjMTgzNzI0Ny5qcGc.jpg")) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 250)
-                            .cornerRadius(30, corners: .allCorners)
-                    } placeholder: {
-                        ProgressView()
+                    
+                    // Animate the appearance of the image
+                    if isImageVisible {
+                        AsyncImage(url: URL(string: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3NtYWxsZGVzaWduY29tcGFueTAxX21pbmltYWxfd2FsbHBhcGVyX2xhbmRzY2FwZV9kdXJpbmdfc3Vuc2V0X2YzNTlhNTQ4LTBiZDItNDJmNi1hZWE1LWEyYmJjMTgzNzI0Ny5qcGc.jpg")) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 250)
+                                .cornerRadius(30, corners: .allCorners)
+                                .opacity(isImageLoaded ? 1 : 0) // Fade in effect for the image
+                                .scaleEffect(isImageLoaded ? 1 : 0.8) // Scale in effect for the image
+                                .onAppear {
+                                    withAnimation(.easeIn(duration: 1.0)) {
+                                        isImageLoaded = true
+                                    }
+                                }
+                        } placeholder: {
+                            ProgressView()
+                        }
                     }
                     
-                    Text("Search for a Country")
-                        .bold().font(.title)
-                        .padding()
+                    // Animate the appearance of the text
+                    if isTextVisible {
+                        ZStack {
+                            Text("Selected Country's Current Weather")
+                                .bold().font(.title)
+                                .padding()
+                                .transition(.opacity) // Fade-in transition for the title text
+                        }
+                    }
                     
                     Picker("Select a country", selection: $selectedCountry) {
                         ForEach(countries, id: \.self) { country in
                             Text(country)
                                 .tag(country)
-                                
                         }
-                        
                     }
                     .pickerStyle(MenuPickerStyle())
                     .background(Color.black)
                     .cornerRadius(10)
                     .accentColor(.white)
-                    
-                    
-                    
                     
                     Button(action: fetchWeatherData) {
                         Label(
@@ -96,7 +111,6 @@ struct SearchLocationView: View {
                         .foregroundColor(.white)
                         .cornerRadius(30)
                     }
-
                     .padding()
                     
                     if let errorMessage = errorMessage {
@@ -110,6 +124,14 @@ struct SearchLocationView: View {
                 .preferredColorScheme(.dark)
                 .transition(.slide)
                 .animation(.easeInOut, value: navigationState)
+                .onAppear {
+                    withAnimation(.easeIn(duration: 1.0)) {
+                        isImageVisible = true
+                    }
+                    withAnimation(.easeIn(duration: 1.5)) {
+                        isTextVisible = true
+                    }
+                }
                 
             case .loading:
                 LoadingView()
@@ -126,6 +148,9 @@ struct SearchLocationView: View {
                             Button("  < Back") {
                                 withAnimation(.easeInOut) {
                                     navigationState = .search
+                                    isImageVisible = false
+                                    isTextVisible = false
+                                    isImageLoaded = false
                                 }
                             }
                         }

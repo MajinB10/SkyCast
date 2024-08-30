@@ -13,13 +13,16 @@ struct HomeView: View {
             VStack {
                 if showWeatherView, let weather = weather {
                     WeatherView(weather: weather)
+                        .transition(.slide)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
                                 Button("  < Back") {
                                     // Notify parent to reset weather and go back
-                                    onBack()
-                                    showWeatherView = false
-                                    showLoadingView = false
+                                    withAnimation {
+                                        onBack()
+                                        showWeatherView = false
+                                        showLoadingView = false
+                                    }
                                 }
                             }
                         }
@@ -27,10 +30,13 @@ struct HomeView: View {
                     if let location = locationmanager.location {
                         if showLoadingView {
                             LoadingView()
+                                .transition(.opacity)
                                 .task {
                                     do {
                                         weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                                        showWeatherView = true
+                                        withAnimation {
+                                            showWeatherView = true
+                                        }
                                     } catch {
                                         print("Error getting weather: \(error)")
                                     }
@@ -38,13 +44,16 @@ struct HomeView: View {
                                 }
                         } else {
                             WelcomeView()
+                                .transition(.move(edge: .bottom))
                                 .environmentObject(locationmanager)
                         }
                     } else {
                         if locationmanager.isLoading {
                             LoadingView()
+                                .transition(.opacity)
                         } else {
                             WelcomeView()
+                                .transition(.move(edge: .bottom))
                                 .environmentObject(locationmanager)
                         }
                     }
@@ -55,7 +64,9 @@ struct HomeView: View {
             .onAppear {
                 // Ensure loading view is shown when appropriate
                 if !showWeatherView && !showLoadingView {
-                    showLoadingView = true
+                    withAnimation {
+                        showLoadingView = true
+                    }
                 }
             }
         }
@@ -74,7 +85,9 @@ struct ParentView: View {
             weather: $weather,
             onBack: {
                 // Handle resetting weather here
-                weather = nil
+                withAnimation {
+                    weather = nil
+                }
             }
         )
     }
