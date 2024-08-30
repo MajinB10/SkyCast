@@ -27,6 +27,7 @@ struct ContentView: View {
         .background(Color.black)
         .preferredColorScheme(.dark)
         .tabViewStyle(.page)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
