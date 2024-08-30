@@ -9,6 +9,10 @@ import SwiftUI
 
 struct WeatherView: View {
     var weather: ResponseBody
+    let imageUrls = [
+        "https://wallpapersmug.com/download/1024x768/7a22c5/forest_mountains_sunset_cool_weather_minimalism.jpg",
+        "https://w0.peakpx.com/wallpaper/947/736/HD-wallpaper-peaceful-lake-minimal-lake-minimalism-minimalist-artist-artwork-digital-art-deviantart.jpg"
+    ]
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -46,14 +50,21 @@ struct WeatherView: View {
                     }
                     Spacer()
                         .frame(height: 0)
-                    AsyncImage(url: URL(string: "https://wallpapersmug.com/download/1024x768/7a22c5/forest_mountains_sunset_cool_weather_minimalism.jpg")) {image in image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 350)
-                        .cornerRadius(20, corners: .allCorners)
-                    } placeholder: {
-                        ProgressView()
+                    
+                    let randomUrlString = imageUrls.randomElement() ?? imageUrls[0]
+                    if let randomUrl = URL(string: randomUrlString) {
+                        AsyncImage(url: randomUrl) {image in image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 350)
+                            .cornerRadius(20, corners: .allCorners)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                    } else {
+                        Text("Image failed to load")
                     }
+                    
                     
                     Spacer()
                         

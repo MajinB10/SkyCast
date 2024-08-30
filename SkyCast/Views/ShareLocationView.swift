@@ -1,5 +1,4 @@
 import SwiftUI
-import CoreLocation
 
 enum NavigationState {
     case search
@@ -13,7 +12,7 @@ struct SearchLocationView: View {
     @State private var latitude: Double?
     @State private var longitude: Double?
     @State private var errorMessage: String?
-    @State private var weather: ResponseBody? // Your weather data model
+    @State private var weather: ResponseBody?
     @State private var navigationState: NavigationState = .search
     
     let countries = [
@@ -41,7 +40,7 @@ struct SearchLocationView: View {
         "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay",
         "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
     ]
-
+    
     private let weatherManager = WeatherManager()
     
     var body: some View {
@@ -49,29 +48,55 @@ struct SearchLocationView: View {
             switch navigationState {
             case .search:
                 VStack {
-                    Text("Search for Weather")
+                    Spacer()
+                        .frame(height: 0)
+                    AsyncImage(url: URL(string: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3NtYWxsZGVzaWduY29tcGFueTAxX21pbmltYWxfd2FsbHBhcGVyX2xhbmRzY2FwZV9kdXJpbmdfc3Vuc2V0X2YzNTlhNTQ4LTBiZDItNDJmNi1hZWE1LWEyYmJjMTgzNzI0Ny5qcGc.jpg")) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 250)
+                            .cornerRadius(30, corners: .allCorners)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    
+                    Text("Search for a Country")
                         .bold().font(.title)
                         .padding()
                     
                     Picker("Select a country", selection: $selectedCountry) {
                         ForEach(countries, id: \.self) { country in
-                            Text(country).tag(country)
+                            Text(country)
+                                .tag(country)
+                                
                         }
+                        
                     }
-                    .pickerStyle(WheelPickerStyle())
-                    .padding()
+                    .pickerStyle(MenuPickerStyle())
+                    .background(Color.black)
+                    .cornerRadius(10)
+                    .accentColor(.white)
                     
-                    Text("Selected Country: \(selectedCountry)")
-                        .padding()
+                    
+                    
                     
                     Button(action: fetchWeatherData) {
-                        Text("Get Weather")
-                            .font(.title2)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(30)
+                        Label(
+                            title: {
+                                Text("Get Current Weather")
+                                    .font(.system(size: 15))
+                            },
+                            icon: {
+                                Image(systemName: "cloud.sun.fill") // Replace with your desired system icon
+                                    .font(.system(size: 20))
+                            }
+                        )
+                        .padding(6)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(30)
                     }
+
                     .padding()
                     
                     if let errorMessage = errorMessage {
