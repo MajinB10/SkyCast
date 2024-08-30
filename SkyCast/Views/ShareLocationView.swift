@@ -58,22 +58,30 @@ struct SearchLocationView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black)
                 .preferredColorScheme(.dark)
+                .transition(.slide)
+                .animation(.easeInOut, value: navigationState)
                 
             case .loading:
                 LoadingView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.black)
                     .preferredColorScheme(.dark)
+                    .transition(.opacity)
+                    .animation(.easeInOut, value: navigationState)
                 
             case .weather:
                 WeatherView(weather: weather ?? previewWeather)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             Button("  < Back") {
-                                navigationState = .search
+                                withAnimation(.easeInOut) {
+                                    navigationState = .search
+                                }
                             }
                         }
                     }
+                    .transition(.slide)
+                    .animation(.easeInOut, value: navigationState)
             }
         }
     }
@@ -84,22 +92,25 @@ struct SearchLocationView: View {
             return
         }
         
-        print("Fetching weather data for \(selectedCountry)...")
-        navigationState = .loading
+        withAnimation(.easeInOut) {
+            navigationState = .loading
+        }
         
         getCoordinates(for: selectedCountry) { coordinates, error in
-            DispatchQueue.main.async { // Ensure UI updates are on the main thread
+            DispatchQueue.main.async {
                 if let error = error {
                     errorMessage = error.localizedDescription
-                    navigationState = .search
-                    print("Error getting coordinates: \(error.localizedDescription)")
+                    withAnimation(.easeInOut) {
+                        navigationState = .search
+                    }
                     return
                 }
                 
                 guard let coordinates = coordinates else {
                     errorMessage = "No coordinates found."
-                    navigationState = .search
-                    print("No coordinates found for the selected country.")
+                    withAnimation(.easeInOut) {
+                        navigationState = .search
+                    }
                     return
                 }
                 
@@ -111,15 +122,17 @@ struct SearchLocationView: View {
                     do {
                         let weatherData = try await weatherManager.getCurrentWeather(latitude: coordinates.latitude, longitude: coordinates.longitude)
                         DispatchQueue.main.async {
-                            weather = weatherData
-                            navigationState = .weather
-                            print("Weather data fetched successfully.")
+                            withAnimation(.easeInOut) {
+                                weather = weatherData
+                                navigationState = .weather
+                            }
                         }
                     } catch {
                         DispatchQueue.main.async {
                             errorMessage = error.localizedDescription
-                            navigationState = .search
-                            print("Error fetching weather data: \(error.localizedDescription)")
+                            withAnimation(.easeInOut) {
+                                navigationState = .search
+                            }
                         }
                     }
                 }
