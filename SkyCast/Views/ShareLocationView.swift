@@ -51,12 +51,11 @@ struct SearchLocationView: View {
             switch navigationState {
             case .search:
                 VStack {
-                    Spacer()
-                        .frame(height: 0)
-                    
+                        Spacer()
+                        .frame(height: 20)
                     // Animate the appearance of the image
                     if isImageVisible {
-                        AsyncImage(url: URL(string: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3NtYWxsZGVzaWduY29tcGFueTAxX21pbmltYWxfd2FsbHBhcGVyX2xhbmRzY2FwZV9kdXJpbmdfc3Vuc2V0X2YzNTlhNTQ4LTBiZDItNDJmNi1hZWE1LWEyYmJjMTgzNzI0Ny5qcGc.jpg")) { image in
+                        AsyncImage(url: URL(string: "https://i.pinimg.com/550x/91/92/88/919288e85eb8442e0b4e7e9bb774e803.jpg")) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -77,13 +76,15 @@ struct SearchLocationView: View {
                     // Animate the appearance of the text
                     if isTextVisible {
                         ZStack {
-                            Text("Country's Current Weather")
-                                .bold().font(.title)
-                                .padding()
+                            Text("Selected Country's Current Weather")
+                                .bold()
+                                .font(.title)
                                 .transition(.opacity) // Fade-in transition for the title text
+                                .multilineTextAlignment(.center) // Center-align text
                         }
                     }
-                    
+                    Spacer()
+                        .frame(height: 30)
                     Picker("Select a country", selection: $selectedCountry) {
                         ForEach(countries, id: \.self) { country in
                             Text(country)
@@ -95,18 +96,20 @@ struct SearchLocationView: View {
                     .cornerRadius(10)
                     .accentColor(.white)
                     
+                    Spacer ()
+                        .frame(height: 15)
                     Button(action: fetchWeatherData) {
                         Label(
                             title: {
                                 Text("Get Current Weather")
-                                    .font(.system(size: 15))
+                                    .font(.system(size: 20))
                             },
                             icon: {
                                 Image(systemName: "cloud.sun.fill") // Replace with your desired system icon
                                     .font(.system(size: 20))
                             }
                         )
-                        .padding(6)
+                        .padding(10)
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(30)

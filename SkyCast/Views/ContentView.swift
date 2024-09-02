@@ -16,13 +16,22 @@ struct ContentView: View {
                 }
             )
             .tabItem {
-                Label("Home", systemImage: "house")
+                VStack {
+                    Image(systemName: "house")
+                        .resizable()
+                        .frame(width: 50, height: 50) // Adjust the size here
+                    Text("Home")
+                }
             }
-            
             
             SearchLocationView(locationManager: locationManager)
                 .tabItem {
-                    Label("Search Location", systemImage: "location.circle")
+                    VStack {
+                        Image(systemName: "location.circle")
+                            .resizable()
+                            .frame(width: 24, height: 24) // Adjust the size here
+                        Text("Search Location")
+                    }
                 }
         }
         .background(Color.black)
