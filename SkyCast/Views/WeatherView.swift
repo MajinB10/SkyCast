@@ -4,7 +4,14 @@ struct WeatherView: View {
     var weather: ResponseBody
     let imageUrls = [
         "https://wallpapersmug.com/download/1024x768/7a22c5/forest_mountains_sunset_cool_weather_minimalism.jpg",
-        "https://w0.peakpx.com/wallpaper/947/736/HD-wallpaper-peaceful-lake-minimal-lake-minimalism-minimalist-artist-artwork-digital-art-deviantart.jpg"
+        "https://images.hdqwalls.com/download/firewatch-minimal-jx-1024x768.jpg",
+        "https://images.hdqwalls.com/download/minimal-landscape-8k-o2-1024x768.jpg",
+        "https://images.hdqwalls.com/download/minimal-landscape-8k-o2-1024x768.jpg",
+        "https://images.hdqwalls.com/download/penguin-minimal-8k-ni-1024x768.jpg",
+        "https://images.hdqwalls.com/download/fox-minimal-artwork-4k-9g-1024x768.jpg",
+        "https://images.hdqwalls.com/download/firewatch-game-sunset-wallpaper-1024x768.jpg",
+        "https://images.hdqwalls.com/download/firewatch-sun-trees-mountains-birds-lake-evening-x8-1024x768.jpg",
+        "https://images.hdqwalls.com/download/firewatch-trees-pic-1024x768.jpg"
     ]
 
     @State private var isWeatherInfoVisible = false

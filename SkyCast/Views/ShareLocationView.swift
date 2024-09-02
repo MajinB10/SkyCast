@@ -77,7 +77,7 @@ struct SearchLocationView: View {
                     // Animate the appearance of the text
                     if isTextVisible {
                         ZStack {
-                            Text("Selected Country's Current Weather")
+                            Text("Country's Current Weather")
                                 .bold().font(.title)
                                 .padding()
                                 .transition(.opacity) // Fade-in transition for the title text
