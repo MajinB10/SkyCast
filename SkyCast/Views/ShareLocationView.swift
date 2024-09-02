@@ -78,7 +78,7 @@ struct SearchLocationView: View {
                         ZStack {
                             Text("Selected Country's Current Weather")
                                 .bold()
-                                .font(.title)
+                                .font(.system(size: 28, weight: .medium, design: .monospaced))
                                 .transition(.opacity) // Fade-in transition for the title text
                                 .multilineTextAlignment(.center) // Center-align text
                         }

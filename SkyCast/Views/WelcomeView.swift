@@ -33,17 +33,18 @@ struct WelcomeView: View {
             if isTextVisible {
                 Text("Welcome to the Weather App")
                     .bold()
-                    .font(.title)
-                    .multilineTextAlignment(.center) // Center-align text
-                    .transition(.opacity) // Fade-in transition for the title text
+                    .font(.system(size: 28, weight: .medium, design: .monospaced))
+                    .multilineTextAlignment(.center)
+                    .transition(.opacity)
                     .foregroundColor(.white)
-                    
 
                 Text("Please share your current location to get the latest weather information")
                     .padding()
-                    .multilineTextAlignment(.center) // Center-align text
-                    .transition(.opacity) // Fade-in transition for the description text
+                    .font(.system(size: 18, weight: .medium, design: .default))
+                    .multilineTextAlignment(.center)
+                    .transition(.opacity)
                     .foregroundColor(.white)
+
             }
 
             // Location Button with no transition as it is always visible

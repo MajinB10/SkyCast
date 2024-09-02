@@ -24,11 +24,14 @@ struct WeatherView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     if isWeatherInfoVisible {
                         Text(weather.name)
-                            .bold().font(.title)
+                            .bold()
+                            .font(.system(size: 28, weight: .medium, design: .monospaced))
                             .transition(.slide) // Slide in effect for the city name
+                            
 
                         Text("Today, \(Date().formatted(.dateTime.month().day().hour().minute()))")
                             .transition(.opacity) // Fade in effect for the date
+                            .font(.system(size: 17, weight: .medium, design: .monospaced))
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -46,12 +49,13 @@ struct WeatherView: View {
 
                                 Text(weather.weather[0].main)
                                     .transition(.opacity) // Fade in effect for the weather condition
+                                    .font(.system(size: 15, weight: .medium, design: .monospaced))
                             }
                             .frame(maxWidth: 150, alignment: .leading)
 
                             Spacer()
                             Text(weather.main.feelsLike.roundDouble() + "°")
-                                .font(.system(size: 90))
+                                .font(.system(size: 90, weight: .medium, design: .monospaced))
                                 .fontWeight(.bold)
                                 .padding()
                                 .transition(.opacity) // Fade in effect for the temperature
@@ -93,8 +97,10 @@ struct WeatherView: View {
 
                 if isWeatherDetailsVisible {
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("Weather now")
-                            .bold().padding(.bottom)
+                        Text("Current Weather Conditions")
+                            .bold()
+                            .padding(.bottom)
+                            .font(.system(size: 16, weight: .medium, design: .monospaced))
                             .transition(.opacity) // Fade in effect for "Weather now"
 
                         HStack {
@@ -119,6 +125,7 @@ struct WeatherView: View {
                     .background(.white)
                     .cornerRadius(20, corners: [.topLeft, .topRight])
                     .transition(.move(edge: .bottom)) // Move in from bottom for the details section
+                    .font(.system(size: 28, weight: .medium, design: .monospaced))
                 }
             }
         }
