@@ -125,6 +125,7 @@ struct WeatherView: View {
         .edgesIgnoringSafeArea(.bottom)
         .background(.black)
         .preferredColorScheme(.dark)
+        .gesture(DragGesture()) // This disables the default swipe gesture
         .onAppear {
             withAnimation(.easeInOut(duration: 1.0)) {
                 isWeatherInfoVisible = true

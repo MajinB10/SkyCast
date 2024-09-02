@@ -55,11 +55,11 @@ struct SearchLocationView: View {
                         .frame(height: 20)
                     // Animate the appearance of the image
                     if isImageVisible {
-                        AsyncImage(url: URL(string: "https://i.pinimg.com/550x/91/92/88/919288e85eb8442e0b4e7e9bb774e803.jpg")) { image in
+                        AsyncImage(url: URL(string: "https://wallpapers.com/images/hd/game-design-736-x-1104-wallpaper-ovgvoijvh7wq56qd.jpg")) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 250)
+                                .frame(width: 225)
                                 .cornerRadius(30, corners: .allCorners)
                                 .opacity(isImageLoaded ? 1 : 0) // Fade in effect for the image
                                 .scaleEffect(isImageLoaded ? 1 : 0.8) // Scale in effect for the image
