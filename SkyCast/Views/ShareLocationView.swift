@@ -86,6 +86,7 @@ struct SearchLocationView: View {
                     Spacer()
                         .frame(height: 30)
                     Picker("Select a country", selection: $selectedCountry) {
+                        Text("Select Country").tag("")
                         ForEach(countries, id: \.self) { country in
                             Text(country)
                                 .tag(country)
