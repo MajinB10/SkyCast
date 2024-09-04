@@ -6,7 +6,6 @@ struct WeatherView: View {
         "https://wallpapersmug.com/download/1024x768/7a22c5/forest_mountains_sunset_cool_weather_minimalism.jpg",
         "https://images.hdqwalls.com/download/firewatch-minimal-jx-1024x768.jpg",
         "https://images.hdqwalls.com/download/minimal-landscape-8k-o2-1024x768.jpg",
-        "https://images.hdqwalls.com/download/minimal-landscape-8k-o2-1024x768.jpg",
         "https://images.hdqwalls.com/download/penguin-minimal-8k-ni-1024x768.jpg",
         "https://images.hdqwalls.com/download/fox-minimal-artwork-4k-9g-1024x768.jpg",
         "https://images.hdqwalls.com/download/firewatch-game-sunset-wallpaper-1024x768.jpg",
@@ -17,10 +16,10 @@ struct WeatherView: View {
     @State private var isWeatherInfoVisible = false
     @State private var isWeatherDetailsVisible = false
     @State private var isImageLoaded = false
-    @State private var dragOffset: CGFloat = 0
+    @State private var dragOffset: CGFloat = UIScreen.main.bounds.height * 0.37 // Partially visible
     @State private var lastDragValue: CGFloat = 0
-    private let expandedOffset: CGFloat = -UIScreen.main.bounds.height * 0.4 // Adjusted size when expanded
-    private let collapsedOffset: CGFloat = 0 // Original size
+    private let expandedOffset: CGFloat = -9 // Fully expanded size
+    private let collapsedOffset: CGFloat = UIScreen.main.bounds.height * 0.37 // Partially visible size
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -120,8 +119,9 @@ struct WeatherView: View {
                             WeatherRow(logo: "humidity", name: "Humidity", value: (weather.main.humidity.roundDouble() + "%"))
                                 .transition(.slide) // Slide in effect for the fourth row
                         }
+                        .padding(.bottom, 320)
                     }
-                    .frame(maxWidth: .infinity,alignment: .leading)
+                    .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.6, alignment: .leading)
                     .padding()
                     .padding(.bottom, 20)
                     .foregroundColor(.black)
@@ -132,16 +132,16 @@ struct WeatherView: View {
                         DragGesture()
                             .onChanged { value in
                                 let dragAmount = value.translation.height + lastDragValue
-                                if dragAmount < 0 && dragAmount >= expandedOffset { // Allow dragging up to expanded size
+                                if dragAmount <= collapsedOffset && dragAmount >= expandedOffset {
                                     dragOffset = dragAmount
                                 }
                             }
-                            .onEnded { value in
+                            .onEnded { _ in
                                 withAnimation {
-                                    if dragOffset < expandedOffset / 2 {
+                                    if dragOffset < (collapsedOffset + expandedOffset) / 2 {
                                         dragOffset = expandedOffset // Fully expanded
                                     } else {
-                                        dragOffset = collapsedOffset // Return to original size
+                                        dragOffset = collapsedOffset // Partially visible
                                     }
                                 }
                                 lastDragValue = dragOffset
