@@ -2,20 +2,20 @@ import SwiftUI
 
 struct WeatherView: View {
     var weather: ResponseBody
-    let imageUrls = [
-        "https://wallpapersmug.com/download/1024x768/7a22c5/forest_mountains_sunset_cool_weather_minimalism.jpg",
-        "https://images.hdqwalls.com/download/firewatch-minimal-jx-1024x768.jpg",
-        "https://images.hdqwalls.com/download/minimal-landscape-8k-o2-1024x768.jpg",
-        "https://images.hdqwalls.com/download/penguin-minimal-8k-ni-1024x768.jpg",
-        "https://images.hdqwalls.com/download/fox-minimal-artwork-4k-9g-1024x768.jpg",
-        "https://images.hdqwalls.com/download/firewatch-game-sunset-wallpaper-1024x768.jpg",
-        "https://images.hdqwalls.com/download/firewatch-sun-trees-mountains-birds-lake-evening-x8-1024x768.jpg",
-        "https://images.hdqwalls.com/download/firewatch-trees-pic-1024x768.jpg"
+    let imageNames = [
+        "Scenery_1",
+        "Scenery_2",
+        "Scenery_3",
+        "Scenery_4",
+        "Scenery_5",
+        "Scenery_6",
+        "Scenery_7",
+        "Scenery_8"
     ]
 
     @State private var isWeatherInfoVisible = false
     @State private var isWeatherDetailsVisible = false
-    @State private var isImageLoaded = false
+    @State private var selectedImageName: String? = nil
     @State private var dragOffset: CGFloat = UIScreen.main.bounds.height * 0.37 // Partially visible
     @State private var lastDragValue: CGFloat = 0
     private let expandedOffset: CGFloat = -9 // Fully expanded size
@@ -65,25 +65,14 @@ struct WeatherView: View {
 
                         Spacer().frame(height: 0)
 
-                        let randomUrlString = imageUrls.randomElement() ?? imageUrls[0]
-                        if let randomUrl = URL(string: randomUrlString) {
-                            AsyncImage(url: randomUrl) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 350)
-                                    .cornerRadius(20, corners: .allCorners)
-                                    .onAppear {
-                                        withAnimation(.easeInOut(duration: 1.0)) {
-                                            isImageLoaded = true
-                                        }
-                                    }
-                                    .opacity(isImageLoaded ? 1 : 0) // Apply the fade-in effect
-                            } placeholder: {
-                                ProgressView()
-                            }
-                        } else {
-                            Text("Image failed to load")
+                        if let imageName = selectedImageName {
+                            Image(imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 350)
+                                .cornerRadius(20, corners: .allCorners)
+                                .transition(.opacity) // Apply the fade-in effect
+                                .opacity(isWeatherInfoVisible ? 1 : 0)
                         }
                     }
 
@@ -155,7 +144,22 @@ struct WeatherView: View {
         .edgesIgnoringSafeArea(.bottom)
         .background(.black)
         .preferredColorScheme(.dark)
+        .gesture(
+            DragGesture()
+                .onChanged { value in
+                    // Prevent horizontal drag gestures
+                    if abs(value.translation.width) > abs(value.translation.height) {
+                        // Ignored horizontal drag
+                    }
+                }
+                .onEnded { _ in
+                    // Prevent horizontal drag gestures
+                }
+        )
         .onAppear {
+            // Select a random image once when the view appears
+            selectedImageName = imageNames.randomElement() ?? imageNames[0]
+
             withAnimation(.easeInOut(duration: 1.0)) {
                 isWeatherInfoVisible = true
             }
@@ -163,11 +167,6 @@ struct WeatherView: View {
                 isWeatherDetailsVisible = true
             }
         }
-        .gesture(
-            DragGesture()
-                .onChanged { _ in }
-                .onEnded { _ in }
-        ) // Prevent horizontal swipes by overriding the gesture
     }
 }
 
