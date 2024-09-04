@@ -11,20 +11,20 @@ struct WelcomeView: View {
         VStack {
             // Animate the appearance of the image
             if isImageVisible {
-                AsyncImage(url: URL(string: "https://i.pinimg.com/550x/91/92/88/919288e85eb8442e0b4e7e9bb774e803.jpg")) { image in
-                    image
+                if let uiImage = UIImage(named: "Luffy") {
+                    Image(uiImage: uiImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250)
-                        .cornerRadius(30, corners: .allCorners)
+                        .cornerRadius(30)
                         .opacity(isImageLoaded ? 1 : 0) // Fade in effect for the image
-                        .scaleEffect(isImageLoaded ? 1 : 0.8) // Scale in effect for the image
+                        .scaleEffect(isImageLoaded ? 1 : 0.9) // Scale in effect for the image
                         .onAppear {
-                            withAnimation(.easeIn(duration: 1.0)) {
+                            withAnimation(.easeIn(duration: 1.2)) {
                                 isImageLoaded = true
                             }
                         }
-                } placeholder: {
+                } else {
                     ProgressView()
                 }
             }
@@ -44,7 +44,6 @@ struct WelcomeView: View {
                     .multilineTextAlignment(.center)
                     .transition(.opacity)
                     .foregroundColor(.white)
-
             }
 
             // Location Button with no transition as it is always visible
@@ -61,11 +60,14 @@ struct WelcomeView: View {
         .background(Color.black) // Optional: Set background color to ensure visibility
         .onAppear {
             // Trigger the animations with a delay to make the transition smoother
-            withAnimation(.easeIn(duration: 1.0)) {
+            withAnimation(.easeInOut(duration: 1.0)) {
                 isImageVisible = true
             }
-            withAnimation(.easeIn(duration: 1.5)) {
-                isTextVisible = true
+            // Delay text animation for a smoother sequence
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.easeInOut(duration: 1.5)) {
+                    isTextVisible = true
+                }
             }
         }
     }
