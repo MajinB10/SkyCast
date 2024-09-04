@@ -17,6 +17,10 @@ struct WeatherView: View {
     @State private var isWeatherInfoVisible = false
     @State private var isWeatherDetailsVisible = false
     @State private var isImageLoaded = false
+    @State private var dragOffset: CGFloat = 0
+    @State private var lastDragValue: CGFloat = 0
+    private let expandedOffset: CGFloat = -UIScreen.main.bounds.height * 0.4 // Adjusted size when expanded
+    private let collapsedOffset: CGFloat = 0 // Original size
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -27,7 +31,6 @@ struct WeatherView: View {
                             .bold()
                             .font(.system(size: 28, weight: .medium, design: .monospaced))
                             .transition(.slide) // Slide in effect for the city name
-                            
 
                         Text("Today, \(Date().formatted(.dateTime.month().day().hour().minute()))")
                             .transition(.opacity) // Fade in effect for the date
@@ -118,12 +121,32 @@ struct WeatherView: View {
                                 .transition(.slide) // Slide in effect for the fourth row
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity,alignment: .leading)
                     .padding()
                     .padding(.bottom, 20)
                     .foregroundColor(.black)
                     .background(.white)
                     .cornerRadius(20, corners: [.topLeft, .topRight])
+                    .offset(y: dragOffset)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                let dragAmount = value.translation.height + lastDragValue
+                                if dragAmount < 0 && dragAmount >= expandedOffset { // Allow dragging up to expanded size
+                                    dragOffset = dragAmount
+                                }
+                            }
+                            .onEnded { value in
+                                withAnimation {
+                                    if dragOffset < expandedOffset / 2 {
+                                        dragOffset = expandedOffset // Fully expanded
+                                    } else {
+                                        dragOffset = collapsedOffset // Return to original size
+                                    }
+                                }
+                                lastDragValue = dragOffset
+                            }
+                    )
                     .transition(.move(edge: .bottom)) // Move in from bottom for the details section
                     .font(.system(size: 28, weight: .medium, design: .monospaced))
                 }
@@ -132,7 +155,6 @@ struct WeatherView: View {
         .edgesIgnoringSafeArea(.bottom)
         .background(.black)
         .preferredColorScheme(.dark)
-        .gesture(DragGesture()) // This disables the default swipe gesture
         .onAppear {
             withAnimation(.easeInOut(duration: 1.0)) {
                 isWeatherInfoVisible = true
@@ -141,6 +163,11 @@ struct WeatherView: View {
                 isWeatherDetailsVisible = true
             }
         }
+        .gesture(
+            DragGesture()
+                .onChanged { _ in }
+                .onEnded { _ in }
+        ) // Prevent horizontal swipes by overriding the gesture
     }
 }
 
