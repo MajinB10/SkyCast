@@ -25,10 +25,12 @@
 		760067392C7F21E30053144B /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760067382C7F21E30053144B /* WeatherRow.swift */; };
 		7600673B2C8021BC0053144B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600673A2C8021BC0053144B /* HomeView.swift */; };
 		7600673F2C8022390053144B /* ShareLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600673E2C8022390053144B /* ShareLocationView.swift */; };
-		76EA38402C88623D0034DCDA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 76EA383F2C88623D0034DCDA /* Lottie */; };
 		76EA384A2C89440F0034DCDA /* Loading_Lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 76EA38492C89440E0034DCDA /* Loading_Lottie.json */; };
 		76EA384B2C89440F0034DCDA /* Loading_Lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 76EA38492C89440E0034DCDA /* Loading_Lottie.json */; };
 		76EA384C2C89440F0034DCDA /* Loading_Lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 76EA38492C89440E0034DCDA /* Loading_Lottie.json */; };
+		76EA385B2C895F9E0034DCDA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 76EA385A2C895F9E0034DCDA /* Lottie */; };
+		76EA385D2C897E080034DCDA /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA385C2C897E080034DCDA /* SplashScreenView.swift */; };
+		76EA38632C8987200034DCDA /* Splash_Screen_Lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 76EA38622C8987200034DCDA /* Splash_Screen_Lottie.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		7600673A2C8021BC0053144B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7600673E2C8022390053144B /* ShareLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLocationView.swift; sourceTree = "<group>"; };
 		76EA38492C89440E0034DCDA /* Loading_Lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading_Lottie.json; sourceTree = "<group>"; };
+		76EA385C2C897E080034DCDA /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		76EA38622C8987200034DCDA /* Splash_Screen_Lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash_Screen_Lottie.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76EA38402C88623D0034DCDA /* Lottie in Frameworks */,
+				76EA385B2C895F9E0034DCDA /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,7 @@
 		760066FA2C7EC5860053144B /* SkyCast */ = {
 			isa = PBXGroup;
 			children = (
+				76EA38512C895AAA0034DCDA /* Lottie */,
 				760067372C7F21BE0053144B /* Components */,
 				760067282C7ED3920053144B /* Views */,
 				760067252C7EC7120053144B /* Managers */,
@@ -156,7 +161,6 @@
 			children = (
 				760067162C7EC5880053144B /* SkyCastUITests.swift */,
 				760067182C7EC5880053144B /* SkyCastUITestsLaunchTests.swift */,
-				76EA38492C89440E0034DCDA /* Loading_Lottie.json */,
 			);
 			path = SkyCastUITests;
 			sourceTree = "<group>";
@@ -179,6 +183,7 @@
 				7600672F2C7F114D0053144B /* WeatherView.swift */,
 				7600673A2C8021BC0053144B /* HomeView.swift */,
 				7600673E2C8022390053144B /* ShareLocationView.swift */,
+				76EA385C2C897E080034DCDA /* SplashScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +194,15 @@
 				760067382C7F21E30053144B /* WeatherRow.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		76EA38512C895AAA0034DCDA /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				76EA38492C89440E0034DCDA /* Loading_Lottie.json */,
+				76EA38622C8987200034DCDA /* Splash_Screen_Lottie.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +222,7 @@
 			);
 			name = SkyCast;
 			packageProductDependencies = (
-				76EA383F2C88623D0034DCDA /* Lottie */,
+				76EA385A2C895F9E0034DCDA /* Lottie */,
 			);
 			productName = SkyCast;
 			productReference = 760066F82C7EC5860053144B /* SkyCast.app */;
@@ -283,7 +297,7 @@
 			);
 			mainGroup = 760066EF2C7EC5860053144B;
 			packageReferences = (
-				76EA383E2C88623D0034DCDA /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				76EA38592C895F9E0034DCDA /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 760066F92C7EC5860053144B /* Products */;
 			projectDirPath = "";
@@ -305,6 +319,7 @@
 				76EA384A2C89440F0034DCDA /* Loading_Lottie.json in Resources */,
 				760067342C7F128D0053144B /* weatherData.json in Resources */,
 				760067002C7EC5880053144B /* Assets.xcassets in Resources */,
+				76EA38632C8987200034DCDA /* Splash_Screen_Lottie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				760066FE2C7EC5860053144B /* ContentView.swift in Sources */,
+				76EA385D2C897E080034DCDA /* SplashScreenView.swift in Sources */,
 				760067362C7F13D50053144B /* Extensions.swift in Sources */,
 				7600672E2C7EFDA60053144B /* Weather Manager.swift in Sources */,
 				760067272C7EC7560053144B /* Location Manager.swift in Sources */,
@@ -563,6 +579,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2BYHW87G5H;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
@@ -582,6 +599,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2BYHW87G5H;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
@@ -600,6 +618,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2BYHW87G5H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Bhavesh.SkyCastUITests;
@@ -617,6 +636,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2BYHW87G5H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Bhavesh.SkyCastUITests;
@@ -670,7 +690,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		76EA383E2C88623D0034DCDA /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		76EA38592C895F9E0034DCDA /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
@@ -681,9 +701,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		76EA383F2C88623D0034DCDA /* Lottie */ = {
+		76EA385A2C895F9E0034DCDA /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 76EA383E2C88623D0034DCDA /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 76EA38592C895F9E0034DCDA /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
