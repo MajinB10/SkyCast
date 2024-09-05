@@ -1,43 +1,45 @@
-//
-//  LoadingView.swift
-//  SkyCast
-//
-//  Created by Bhavesh Anand on 28/8/24.
-//
-
 import SwiftUI
+import Lottie
 
 struct LoadingView: View {
-    @State private var isLoading = false
-
+    private var animationView: LottieAnimationView?
+    
+    init() {
+        animationView = LottieAnimationView(name: "Loading_Lottie") // Replace "Loading" with your JSON file name
+        animationView?.loopMode = .loop
+        animationView?.play()
+    }
+    
     var body: some View {
-        /*ProgressView("Fetching Weather Data...")
-            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)*/
-        
         ZStack {
-
-                    Text("Fetching Current Weather Data...")
-                        .font(.system(.body, design: .rounded))
-                        .bold()
-                        .offset(x: 0, y: -25)
-
-                    RoundedRectangle(cornerRadius: 3)
-                        .stroke(Color(.systemGray5), lineWidth: 3)
-                        .frame(width: 250, height: 3)
-
-                    RoundedRectangle(cornerRadius: 3)
-                        .stroke(Color.green, lineWidth: 3)
-                        .frame(width: 30, height: 3)
-                        .offset(x: isLoading ? 110 : -110, y: 0)
-                        .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
-                }
-                .onAppear() {
-                    self.isLoading = true
-                }
+            // Black background
+            Color.black
+                .edgesIgnoringSafeArea(.all)
+            
+            // Ensure the animation view is added
+            LottieView(animationView: animationView)
+        }
     }
 }
 
-#Preview {
-    LoadingView()
+struct LottieView: UIViewRepresentable {
+    var animationView: LottieAnimationView?
+
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        animationView?.frame = view.bounds
+        animationView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(animationView!)
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct LoadingView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoadingView()
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
 }
