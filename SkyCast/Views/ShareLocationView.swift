@@ -189,7 +189,8 @@ struct SearchLocationView: View {
         withAnimation(.easeInOut) {
             navigationState = .loading
         }
-        
+
+        // Fetch the weather data
         getCoordinates(for: selectedCountry) { coordinates, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -199,7 +200,7 @@ struct SearchLocationView: View {
                     }
                     return
                 }
-                
+
                 guard let coordinates = coordinates else {
                     errorMessage = "No coordinates found."
                     withAnimation(.easeInOut) {
@@ -207,18 +208,21 @@ struct SearchLocationView: View {
                     }
                     return
                 }
-                
+
                 latitude = coordinates.latitude
                 longitude = coordinates.longitude
                 errorMessage = nil
-                
+
                 Task {
                     do {
                         let weatherData = try await weatherManager.getCurrentWeather(latitude: coordinates.latitude, longitude: coordinates.longitude)
                         DispatchQueue.main.async {
-                            withAnimation(.easeInOut) {
-                                weather = weatherData
-                                navigationState = .weather
+                            // Introduce a delay of at least 5 seconds for the loading view
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                withAnimation(.easeInOut) {
+                                    weather = weatherData
+                                    navigationState = .weather
+                                }
                             }
                         }
                     } catch {
