@@ -17,9 +17,10 @@ struct WeatherView: View {
     @State private var isWeatherDetailsVisible = false
     @State private var selectedImageName: String? = nil
     @State private var dragOffset: CGFloat = UIScreen.main.bounds.height * 0.37 // Partially visible
-    @State private var lastDragValue: CGFloat = 0
+    @State private var lastDragValue: CGFloat = UIScreen.main.bounds.height * 0.37
     private let expandedOffset: CGFloat = -9 // Fully expanded size
     private let collapsedOffset: CGFloat = UIScreen.main.bounds.height * 0.37 // Partially visible size
+    private let horizontalDragThreshold: CGFloat = 10 // Maximum horizontal movement allowed
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -29,10 +30,10 @@ struct WeatherView: View {
                         Text(weather.name)
                             .bold()
                             .font(.system(size: 28, weight: .medium, design: .monospaced))
-                            .transition(.slide) // Slide in effect for the city name
+                            .transition(.slide)
 
                         Text("Today, \(Date().formatted(.dateTime.month().day().hour().minute()))")
-                            .transition(.opacity) // Fade in effect for the date
+                            .transition(.opacity)
                             .font(.system(size: 17, weight: .medium, design: .monospaced))
                     }
                 }
@@ -47,10 +48,10 @@ struct WeatherView: View {
                             VStack(spacing: 20) {
                                 Image(systemName: "sun.max")
                                     .font(.system(size: 40))
-                                    .transition(.scale) // Scale in effect for the weather icon
+                                    .transition(.scale)
 
                                 Text(weather.weather[0].main)
-                                    .transition(.opacity) // Fade in effect for the weather condition
+                                    .transition(.opacity)
                                     .font(.system(size: 15, weight: .medium, design: .monospaced))
                             }
                             .frame(maxWidth: 150, alignment: .leading)
@@ -60,7 +61,7 @@ struct WeatherView: View {
                                 .font(.system(size: 90, weight: .medium, design: .monospaced))
                                 .fontWeight(.bold)
                                 .padding()
-                                .transition(.opacity) // Fade in effect for the temperature
+                                .transition(.opacity)
                         }
 
                         Spacer().frame(height: 0)
@@ -71,7 +72,7 @@ struct WeatherView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 350)
                                 .cornerRadius(20, corners: .allCorners)
-                                .transition(.opacity) // Apply the fade-in effect
+                                .transition(.opacity)
                                 .opacity(isWeatherInfoVisible ? 1 : 0)
                         }
                     }
@@ -92,21 +93,21 @@ struct WeatherView: View {
                             .bold()
                             .padding(.bottom)
                             .font(.system(size: 16, weight: .medium, design: .monospaced))
-                            .transition(.opacity) // Fade in effect for "Weather now"
+                            .transition(.opacity)
 
                         HStack {
                             WeatherRow(logo: "thermometer", name: "Min temp", value: (weather.main.tempMin.roundDouble() + "°"))
-                                .transition(.slide) // Slide in effect for the first row
+                                .transition(.slide)
                             Spacer()
                             WeatherRow(logo: "thermometer", name: "Max temp", value: (weather.main.tempMax.roundDouble() + "°"))
-                                .transition(.slide) // Slide in effect for the second row
+                                .transition(.slide)
                         }
                         HStack {
                             WeatherRow(logo: "wind", name: "Wind Speed", value: (weather.wind.speed.roundDouble() + "m/s"))
-                                .transition(.slide) // Slide in effect for the third row
+                                .transition(.slide)
                             Spacer()
                             WeatherRow(logo: "humidity", name: "Humidity", value: (weather.main.humidity.roundDouble() + "%"))
-                                .transition(.slide) // Slide in effect for the fourth row
+                                .transition(.slide)
                         }
                         .padding(.bottom, 320)
                     }
@@ -120,44 +121,82 @@ struct WeatherView: View {
                     .gesture(
                         DragGesture()
                             .onChanged { value in
-                                let dragAmount = value.translation.height + lastDragValue
-                                if dragAmount <= collapsedOffset && dragAmount >= expandedOffset {
-                                    dragOffset = dragAmount
+                                // Update the drag offset based on vertical motion
+                                if abs(value.translation.width) < horizontalDragThreshold {
+                                    let newOffset = lastDragValue + value.translation.height
+                                    dragOffset = min(max(newOffset, expandedOffset), collapsedOffset)
                                 }
                             }
-                            .onEnded { _ in
-                                withAnimation {
-                                    if dragOffset < (collapsedOffset + expandedOffset) / 2 {
-                                        dragOffset = expandedOffset // Fully expanded
+                            .onEnded { value in
+                                let velocity = value.predictedEndTranslation.height
+                                
+                                withAnimation(
+                                    Animation.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.2)
+                                        .speed(1.2) // Faster animation speed
+                                ) {
+                                    if abs(velocity) > 500 {
+                                        // Flick gesture detected
+                                        if velocity < 0 {
+                                            dragOffset = expandedOffset // Fully expanded
+                                        } else {
+                                            dragOffset = collapsedOffset // Partially visible
+                                        }
                                     } else {
-                                        dragOffset = collapsedOffset // Partially visible
+                                        // Regular drag
+                                        if dragOffset < (collapsedOffset + expandedOffset) / 2 {
+                                            dragOffset = expandedOffset // Fully expanded
+                                        } else {
+                                            dragOffset = collapsedOffset // Partially visible
+                                        }
                                     }
                                 }
                                 lastDragValue = dragOffset
                             }
                     )
-                    .transition(.move(edge: .bottom)) // Move in from bottom for the details section
+                    .contentShape(Rectangle()) // Ensure the entire view area is interactive
+                    .transition(.move(edge: .bottom))
                     .font(.system(size: 28, weight: .medium, design: .monospaced))
                 }
             }
         }
-        .edgesIgnoringSafeArea(.bottom)
-        .background(.black)
-        .preferredColorScheme(.dark)
         .gesture(
             DragGesture()
                 .onChanged { value in
-                    // Prevent horizontal drag gestures
-                    if abs(value.translation.width) > abs(value.translation.height) {
-                        // Ignored horizontal drag
+                    // Update the drag offset only if vertical motion is detected
+                    if abs(value.translation.width) < horizontalDragThreshold {
+                        let newOffset = lastDragValue + value.translation.height
+                        dragOffset = min(max(newOffset, expandedOffset), collapsedOffset)
                     }
                 }
-                .onEnded { _ in
-                    // Prevent horizontal drag gestures
+                .onEnded { value in
+                    // Decide whether to fully expand or collapse based on the final drag position
+                    let velocity = value.predictedEndTranslation.height
+                    
+                    withAnimation(
+                        Animation.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0.2)
+                            .speed(1.2) // Faster animation speed
+                    ) {
+                        if abs(velocity) > 500 {
+                            if velocity < 0 {
+                                dragOffset = expandedOffset // Fully expanded
+                            } else {
+                                dragOffset = collapsedOffset // Partially visible
+                            }
+                        } else {
+                            if dragOffset < (collapsedOffset + expandedOffset) / 2 {
+                                dragOffset = expandedOffset // Fully expanded
+                            } else {
+                                dragOffset = collapsedOffset // Partially visible
+                            }
+                        }
+                    }
+                    lastDragValue = dragOffset
                 }
         )
+        .edgesIgnoringSafeArea(.bottom)
+        .background(.black)
+        .preferredColorScheme(.dark)
         .onAppear {
-            // Select a random image once when the view appears
             selectedImageName = imageNames.randomElement() ?? imageNames[0]
 
             withAnimation(.easeInOut(duration: 1.0)) {
