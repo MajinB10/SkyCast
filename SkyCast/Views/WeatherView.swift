@@ -12,6 +12,7 @@ struct WeatherView: View {
         "Scenery_7",
         "Scenery_8"
     ]
+    
 
     @State private var isWeatherInfoVisible = false
     @State private var isWeatherDetailsVisible = false
