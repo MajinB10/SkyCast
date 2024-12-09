@@ -71,4 +71,24 @@ SkyCast is an evolving project. I plan to consistently roll out updates with new
 ---
 
 ## 📥 Installation  
-1. Clone the repository through XCode and run.
+1. Clone the repository:  
+   `bash
+   git clone https://github.com/MajinB10/SkyCast.git`
+2.	Open the project in Xcode.
+3.	Build and run the app on an iOS simulator or a physical device.
+
+## 🤝 Contributing
+
+Contributions are welcome! If you’d like to help improve SkyCast, follow these steps:
+1.	Fork the repository.
+2.	Create a new branch for your feature:
+   `git checkout -b feature-name`
+3.	Commit your changes and push them to your forked repository.
+4.	Open a pull request, and I’ll review your contributions.
+
+## 📄 License
+
+SkyCast is licensed under the MIT License. Feel free to use and modify the code.
+
+Thank you for checking out SkyCast! I’m excited to continue improving this app and sharing my journey in iOS development. 🌟
+   
