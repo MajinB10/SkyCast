@@ -1,73 +1,29 @@
-# Weather App - SkyCast / Forecastly
+SkyCast
 
-**Platform**: iOS  
-**Language**: Swift  
-**Version Control**: Git (or Bitbucket)
+Background
 
-## Project Overview
+SkyCast is a weather app designed to provide real-time weather updates based on your current location or any selected country. Utilizing an API to fetch accurate weather data, SkyCast offers an intuitive interface to access essential weather information such as temperature, humidity, and wind speed.
 
-SkyCast / Forecastly is an iOS weather application that provides users with real-time weather information. The app will feature a clean and intuitive UI, offering various weather-related data, such as temperature, humidity, air quality, and more.
+This app is my very first project using Swift and SwiftUI, marking my entry into iOS app development. While it’s a simple application, it represents an important milestone in my learning journey, and I plan to continuously improve and expand its features.
 
-## Prerequisites
+Technologies Used
+	•	Swift: Primary programming language for iOS app development.
+	•	SwiftUI: Framework for designing the app’s user interface.
+	•	Weather API: To fetch live weather data for various locations.
 
-1. **Watch Beginner's Guide to Xcode and Swift**
-   - Get familiar with the basics of Xcode and Swift.
-2. **Learn Source Control**
-   - Understand how to connect working code to source control using Git or Bitbucket.
-3. **Experiment with Swift**
-   - Spend time experimenting with Swift to build foundational knowledge.
+Features
+	•	Current Location Weather: Automatically detects your current location and displays the current weather.
+	•	Country Selector: Choose a specific country to view its current weather conditions.
+	•	Weather Metrics: Displays key information such as:
+	•	Temperature
+	•	Humidity
+	•	Wind speed
 
-## Tasks
+Planned Features
+	•	Hourly and Weekly Forecast: Display weather predictions for the next few hours and days.
+	•	Theme Customization: Add dark mode and custom color themes.
+	•	Push Notifications: Notify users of sudden weather changes or severe conditions.
+	•	Improved UI/UX: Enhance design elements for a smoother user experience.
+	•	Multi-Language Support: Enable users to view the app in various languages.
 
-### Task 1: Set Up Project
-- **Create Repository**: Initialize a Git repository and set up the project structure in Xcode.
-  
-### Task 2: Learn Swift
-- **Study and Practice**: Continue learning Swift, focusing on syntax, concepts, and best practices.
-
-### Task 3: Implement Basic Features
-- **Code Basic Functionality**: Start coding basic app features using Xcode.
-
-### Task 4: Develop UI
-- **SwiftUI**: Design and develop a simple, user-friendly interface.
-
-### Task 5: API Integration
-- **API Keys**: Obtain API keys for weather data.
-- **Test with Postman**: Verify how the API stores and retrieves data using Postman.
-
-### Task 6: Design App Logo
-- **Logo Design**: Create a logo that represents the app, inspired by other weather apps.
-
-## Basic Features
-
-1. **Current Location Weather**: Display weather information for the user's current location.
-2. **Search Weather by Location**: Enable users to search and view weather for any location.
-3. **Weather Statistics**: Provide detailed weather stats like humidity, air quality, and temperature.
-4. **Navigation Panel**: Allow users to switch between different app actions.
-5. **Home Location**: Set a default home location to display its weather on the home screen.
-
-## Advanced Features
-
-1. **Dynamic Backdrop**: Change the page backdrop according to the current weather.
-2. **Weekly Forecast**: Show a 7-day weather forecast for the current or chosen location.
-3. **AI Summary**: Include an AI-generated weather summary at the top of the page.
-4. **Light/Dark Mode Toggle**: Add a toggle option for light and dark modes.
-5. **Background Sounds**: Play background sounds that match the weather conditions.
-6. **User Accounts**: Implement session state to store data and create user accounts.
-7. **Widgets**: Offer widgets of various sizes for quick weather updates.
-
-## UI Design Inspirations
-
-- **Reference 1**: Screenshots on your phone
-- **Reference 2**: Latest update to Google’s weather app
-- **Reference 3**: Pinterest for splash pages and weather backdrops
-- **Reference 4**: Carrot weather app UI
-
-## Deployment Plans
-
-1. **Beta Testing**: Deploy the app to TestFlight for beta users.
-2. **App Store Introduction**: Prepare materials for the app's introduction on the App Store.
-
-## Optional Requirements
-
-- **Wireframe**: Create a wireframe to map out the sample UI.
+SkyCast is a growing project, and I am excited to continue learning and adding new functionalities to enhance the user experience. Stay tuned for updates!
